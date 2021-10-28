@@ -1,0 +1,44 @@
+[
+  {
+    "name": "comment",
+    "path": "/comment",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/comment.vue",
+    "chunkName": "pages/comment",
+    "_name": "_2079b5d5"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_7565a15f"
+  },
+  {
+    "name": "logout",
+    "path": "/logout",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/logout.vue",
+    "chunkName": "pages/logout",
+    "_name": "_f740d9f8"
+  },
+  {
+    "name": "mypage",
+    "path": "/mypage",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/mypage.vue",
+    "chunkName": "pages/mypage",
+    "_name": "_261d1196"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_5c27071d"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/taka/Desktop/20211028_nakajima2/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_a8840370"
+  }
+]

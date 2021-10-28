@@ -1,42 +1,44 @@
 <template>
-  <div>
-<!-- -------------------------左　　　側--------------------------- -->
-    <div class="flex">
-      <div class="container-left">
-        <h1><NuxtLink to="/"><img src="/logo.png" alt="画像" width="100px"></NuxtLink></h1>
-        <p><NuxtLink class="homettl" to="/">　ホーム</NuxtLink></p><br>
-        <a class="logoutttl" @click="logout">　ログアウト</a>
-        <validation-provider v-slot="ProviderProps" rules="required|max:120">
-          <div class="share">
-            <p>シェア</p><br>
-            <textarea v-model="newPost" name="シェア" cols="30" rows="7" id="share"></textarea><br>
-            <button @click="insertPost" class="share-button">シェアする</button>
+  
+    <div>
+  <!-- -------------------------左　　　側--------------------------- -->
+      <div class="flex">
+        <div class="container-left">
+          <h1><NuxtLink to="/"><img src="/logo.png" alt="画像" width="100px"></NuxtLink></h1>
+          <p><NuxtLink class="homettl" to="/">　ホーム</NuxtLink></p><br>
+          <a class="logoutttl" @click="logout">　ログアウト</a>
+            <div class="share">
+              <p>シェア</p><br>
+              <validation-observer ref="obs" v-slot="ObserverProps">
+                <validation-provider v-slot="ProviderProps" rules="required|max:120">
+                  <textarea v-model="newPost" name="シェア" cols="30" rows="7" id="share"></textarea><br>
+                  <div class="error">{{ ProviderProps.errors[0] }}</div>
+              　　<button @click="insertPost" :disabled="ObserverProps.invalid || !ObserverProps.validated" class="share-button">シェアする</button>
+             　 </validation-provider>
+              </validation-observer>
+            </div>
+        </div>
+  <!-- -------------------------右　　　側--------------------------- -->
+        <div class="container-right">
+          <div class="description">
+            <p>ホーム</p>
           </div>
-          <div class="error">{{ ProviderProps.errors[0] }}</div>
-        </validation-provider>
-        
-      </div>
-<!-- -------------------------右　　　側--------------------------- -->
-      <div class="container-right">
-        <div class="description">
-          <p>ホーム</p>
+          <div class="postdescription" v-for="item in postCurrent" :key="item.id">
+            <p>{{item.name}}
+              <span class="likebefore" @click="insertLike(item.id)"></span>
+              <span class="likescount">{{item.likes}}</span>
+              <span class="deletebefore" @click="deleteButton(item.id)"></span>
+              <span class="commentpage" @click="commentButton(item.id)"></span>
+            </p><br>
+            <p>{{item.post}}</p>
+            <!-- <NuxtLink class="commentpage" to="/comment"></NuxtLink></span> -->
+          </div>
         </div>
-        <div class="postdescription" v-for="item in postCurrent" :key="item.id">
-          <p>{{item.name}}
-            <span class="likebefore" @click="insertLike(item.id)"></span>
-            <span class="likescount">{{item.likes}}</span>
-            <span class="deletebefore" @click="deleteButton(item.id)"></span>
-            <span class="commentpage" @click="commentButton(item.id)"></span>
-          </p><br>
-          <p>{{item.post}}</p>
-          <!-- <NuxtLink class="commentpage" to="/comment"></NuxtLink></span> -->
-        </div>
+
       </div>
 
     </div>
-
-  </div>
-
+  
 </template>
 
 <script>
