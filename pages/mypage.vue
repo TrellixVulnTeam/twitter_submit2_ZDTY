@@ -6,12 +6,15 @@
         <h1><NuxtLink to="/"><img src="/logo.png" alt="画像" width="100px"></NuxtLink></h1>
         <p><NuxtLink class="homettl" to="/">　ホーム</NuxtLink></p><br>
         <a class="logoutttl" @click="logout">　ログアウト</a>
-        <div class="share">
-          <p>シェア</p><br>
-
-          <textarea v-model="newPost" name="post" cols="30" rows="7" id="share"></textarea><br>
-          <button @click="insertPost" class="share-button">シェアする</button>
-        </div>
+        <validation-provider v-slot="ProviderProps" rules="required|max:120">
+          <div class="share">
+            <p>シェア</p><br>
+            <textarea v-model="newPost" name="シェア" cols="30" rows="7" id="share"></textarea><br>
+            <button @click="insertPost" class="share-button">シェアする</button>
+          </div>
+          <div class="error">{{ ProviderProps.errors[0] }}</div>
+        </validation-provider>
+        
       </div>
 <!-- -------------------------右　　　側--------------------------- -->
       <div class="container-right">
